@@ -1,0 +1,44 @@
+.job-list {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.job-list-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.1em;
+    width: 100%;
+    min-width: 30%;
+}
+
+.job-list-table thead tr {
+    background-color: dodgerblue;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 4px solid white;
+}
+
+.job-list-table th,
+.job-list-table td {
+    padding:6px 7px;
+}
+
+.job-list-table tbody tr button{
+    background-color: red;
+    border-radius: 45%;
+    margin: 6px 7px;
+}
+
+.job-list-table tbody tr :not(button){
+    background-color: deepskyblue;
+    border-bottom: 1px solid white;
+}
+
+.job-list-table tbody tr:nth-of-type(even) :not(button) {
+    background-color: lightskyblue;
+}

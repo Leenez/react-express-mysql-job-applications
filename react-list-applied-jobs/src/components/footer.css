@@ -1,0 +1,12 @@
+.page-footer {
+    width: 100%;
+    border-top: 1px solid black;
+    height: 30px;
+    position: fixed;
+    bottom: 0;
+}
+
+.footer-text {
+    font-family: Arial;
+    font-style: italic;
+}

@@ -1,0 +1,10 @@
+.page-header {
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+.header-text {
+    font-family: Arial;
+    font-style: italic;
+    text-align: center;
+}
