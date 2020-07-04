@@ -16,25 +16,32 @@ db.connect((err) => {
 
 const app = express();
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.listen('3001', () => {
-    console.log('Server started on port 3001');
+app.post('/addjob', (req, res) => {
+    let sql = `INSERT INTO appliedjobs(position, company, announced, closes, site, applied) values('${req.body.position}', '${req.body.company}', '${req.body.announced}', '${req.body.closes}', '${req.body.site}', ${req.body.applied})`;
+    let query = db.query(sql, (err, result) => {
+        if(err) throw err;
+    });
 });
 
 app.get('/jobslist', (req, res) => {
     let sql = 'SELECT * FROM appliedjobs';
     let query = db.query(sql, (err, result) => {
         if(err) throw err;
-        console.log(result);
         res.send(result);
     });
 });
 
-app.get('/addjob/:position/:announced/:closes/:site/:applied', (req, res) => {
-    let sql = `INSERT INTO appliedjobs(position, announced, closes, site, applied) values('${req.params.position}', '${req.params.announced}', '${req.params.closes}', '${req.params.site}', ${req.params.applied})`;
-     let query = db.query(sql, (err, result) => {
+app.get('/deletejob/:id', (req, res) => {
+    let sql = `DELETE FROM appliedjobs WHERE id = ${req.params.id}`
+    console.log(sql);
+    let query = db.query(sql, (err, result) => {
         if(err) throw err;
-        console.log(result);
-        res.send(result);
     });
+});
+
+app.listen('3001', () => {
+    console.log('Server started on port 3001');
 });
