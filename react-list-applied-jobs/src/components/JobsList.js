@@ -2,8 +2,9 @@ import React from 'react';
 import Job from './Job';
 import './jobslist.css';
 
-function JobsList({jobs, removeJob}) {
+function JobsList({ jobs, jobsChanged }) {
   if(jobs){
+    console.log(jobs);
     return(
         <div className="job-list">
             <h3>Job List</h3>
@@ -11,14 +12,16 @@ function JobsList({jobs, removeJob}) {
               <thead>
                 <tr>
                   <th>Title</th>
+                  <th>Company</th>
                   <th>Announced</th>
                   <th>Closes</th>
                   <th>Site</th>
+                  <th> </th>
                 </tr>
               </thead>
               <tbody>
-                {jobs.map((job, index) => (
-                  <Job key={index} index={index} job={job} removeJob={removeJob} />
+                {jobs.map((job) => (
+                  <Job key={job.id} job={job} jobsChanged={jobsChanged} />
                 ))}
               </tbody>
             </table>

@@ -1,7 +1,7 @@
 .job-list {
     width: 80%;
     margin: auto;
-    padding: 20px;
+    padding: 0 20px;
     border: 1px solid black;
     border-radius: 5px;
     margin-top: 20px;
@@ -11,9 +11,10 @@
 .job-list-table {
     border-collapse: collapse;
     margin: 25px 0;
-    font-size: 1.1em;
+    font-size: 0.9em;
+    font-weight: bold;
     width: 100%;
-    min-width: 30%;
+    overflow: hidden;
 }
 
 .job-list-table thead tr {
@@ -28,13 +29,21 @@
     padding:6px 7px;
 }
 
-.job-list-table tbody tr button{
+td, td, tr {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.job-list-table tbody button{
     background-color: red;
     border-radius: 45%;
     margin: 6px 7px;
+    float: right;
 }
 
-.job-list-table tbody tr :not(button){
+.job-list-table tbody tr :not(button) {
     background-color: deepskyblue;
     border-bottom: 1px solid white;
 }

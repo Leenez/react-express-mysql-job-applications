@@ -6,31 +6,35 @@ import Footer from './components/Footer';
 
 function App() {
 
+  const [change, setChange] = useState(0);
   const [jobs, setJobs] = useState('');
 
+  useEffect(() => {
+    getFromDatabase();
+  }, [change]);
+
+  const jobsChanged = () => {
+    if(change === 0) {
+      setChange(1);
+    } else {
+      setChange(0);
+    }
+  }
+
+  console.log(change);
+
   const getFromDatabase = () => {
+    console.log('run get database');
     fetch('http://localhost:3001/jobslist')
     .then(response => response.json())
-    .then(response => setJobs(response));
-  }
-
-  const addJob = job => {
-    const newJobs = [...jobs, { position: job.position, announced: job.announced, closes: job.closes, site: job.site, applied: job.applied }];
-    setJobs(newJobs);
-  }
-
-  const removeJob = index => {
-    const newJobs = [...jobs];
-    newJobs.splice(index, 1);
-    setJobs(newJobs);
+    .then(response => setJobs(response))
   }
 
   return (
     <React.Fragment>
       <Header header_text="Job Application Recorder"/>
-      <AddJobForm addJob={addJob} />
-      <button onClick={() => getFromDatabase()}>Update</button> 
-      <JobsList jobs={jobs} removeJob={removeJob}/>
+      <AddJobForm jobsChanged={jobsChanged}/>
+      <JobsList jobs={jobs} jobsChanged={jobsChanged}/>
       <Footer footer_text="test footer"/>
     </React.Fragment>
   );
